@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="description" content="DataSmithy — AI-powered data engineering platform. Upload any dataset, clean it, engineer features, and export ML-ready data instantly."/>
+  <title>DataSmithy — Data Engineering Platform</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            teal: { DEFAULT: '#00CBA8', dim: '#002A22', light: '#e6faf7' },
+            amber: { DEFAULT: '#FFB300', dim: '#2E1F00', light: '#fff8e1' },
+            navy: { 900: '#070B15', 800: '#0C1325', 700: '#101929', 600: '#1A2740', 500: '#2A3A55' },
+          },
+          fontFamily: { mono: ['JetBrains Mono','Fira Code','Cascadia Code','monospace'] }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+  <style>
+    :root {
+      --teal:#00CBA8; --teal-dim:#002A22; --teal-b:rgba(0,203,168,.15);
+      --amber:#FFB300; --red:#FF4655; --blue:#4B9EFF;
+      --bg:#070B15; --surf:#0C1325; --card:#101929; --border:#1A2740;
+      --text:#E2EAF8; --muted:#6A7E9E; --dimmer:#2A3A55;
+    }
+    .light {
+      --bg:#F5F7FA; --surf:#FFFFFF; --card:#FFFFFF; --border:#E2E8F0;
+      --text:#1A2035; --muted:#64748B; --dimmer:#CBD5E1;
+    }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); transition:background .2s,color .2s; }
+    ::-webkit-scrollbar{width:5px;height:5px}
+    ::-webkit-scrollbar-track{background:transparent}
+    ::-webkit-scrollbar-thumb{background:var(--dimmer);border-radius:10px}
+    .card { background:var(--card); border:1px solid var(--border); border-radius:8px; }
+    .btn-primary { background:var(--teal); color:#000; font-weight:600; border:none; border-radius:6px; cursor:pointer; padding:9px 20px; font-size:13px; transition:opacity .15s; }
+    .btn-primary:hover { opacity:.88; }
+    .btn-primary:disabled { opacity:.4; cursor:not-allowed; }
+    .btn-ghost { background:transparent; color:var(--muted); border:1px solid var(--border); border-radius:5px; padding:6px 14px; font-size:12px; cursor:pointer; transition:all .15s; }
+    .btn-ghost:hover,.btn-ghost.active { background:var(--teal-b); color:var(--teal); border-color:var(--teal); }
+    .tag { display:inline-block; border-radius:4px; padding:2px 8px; font-size:11px; font-weight:500; }
+    .tag-teal { background:rgba(0,203,168,.12); color:var(--teal); border:1px solid rgba(0,203,168,.25); }
+    .tag-amber { background:rgba(255,179,0,.12); color:var(--amber); border:1px solid rgba(255,179,0,.25); }
+    .tag-red { background:rgba(255,70,85,.12); color:var(--red); border:1px solid rgba(255,70,85,.25); }
+    .tag-blue { background:rgba(75,158,255,.12); color:var(--blue); border:1px solid rgba(75,158,255,.25); }
+    table { width:100%; border-collapse:collapse; }
+    th { text-align:left; padding:8px 10px; color:var(--muted); font-weight:500; font-size:11px; letter-spacing:.5px; text-transform:uppercase; border-bottom:1px solid var(--border); }
+    td { padding:8px 10px; border-bottom:1px solid rgba(26,39,64,.4); font-size:12px; vertical-align:middle; }
+    select,input[type=text],input[type=email],input[type=password],input[type=number] {
+      background:var(--surf); color:var(--text); border:1px solid var(--border);
+      border-radius:5px; padding:7px 10px; font-size:12px; font-family:'Inter',sans-serif; outline:none;
+    }
+    select:focus,input:focus { border-color:var(--teal); }
+    .log { font-family:'JetBrains Mono',monospace; font-size:11px; }
+    .progress-bar { height:4px; background:var(--border); border-radius:2px; overflow:hidden; }
+    .progress-fill { height:4px; border-radius:2px; transition:width .4s; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+    .pulse { animation:pulse 1.5s infinite; }
+    @keyframes spin { to{transform:rotate(360deg)} }
+    .spin { animation:spin 1s linear infinite; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+    .fade-in { animation:fadeIn .3s ease; }
+  </style>
+</head>
+<body>
+  <noscript>DataSmithy requires JavaScript to run.</noscript>
+  <div id="root"></div>
+</body>
+</html>

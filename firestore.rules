@@ -1,0 +1,23 @@
+// firestore.rules — paste this into Firebase Console → Firestore → Rules
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Users can read/write only their own doc
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // Sessions: users can create and read their own
+    match /sessions/{sessionId} {
+      allow create: if request.auth != null && request.resource.data.uid == request.auth.uid;
+      allow read:   if request.auth != null && resource.data.uid == request.auth.uid;
+    }
+
+    // Admin stats: only admins (by email) can read
+    match /admin/{document=**} {
+      allow read, write: if request.auth != null &&
+        request.auth.token.email in ['your@email.com'];
+    }
+  }
+}

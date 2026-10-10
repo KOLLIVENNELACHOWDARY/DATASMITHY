@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="description" content="DataSmithy — Free data engineering platform. Upload any dataset, clean it, engineer features, and export ML-ready data instantly."/>
+  <meta name="theme-color" content="#00CBA8"/>
+  <meta property="og:title" content="DataSmithy — Free Data Engineering Platform"/>
+  <meta property="og:description" content="Clean, transform and export any dataset instantly. Free, runs in your browser."/>
+  <meta property="og:image" content="https://your-domain.com/og-image.png"/>
+  <meta property="og:url" content="https://your-domain.com"/>
+  <title>DataSmithy — Data Engineering Platform</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+  <style>
+    /* ── Light mode only ── */
+    :root, .light {
+      --teal:#00CBA8; --teal-dim:#e6faf7; --teal-b:rgba(0,203,168,.12);
+      --amber:#F59E0B; --red:#EF4444; --blue:#3B82F6; --purple:#8B5CF6;
+      --bg:#F8FAFC; --surf:#FFFFFF; --card:#FFFFFF; --border:#E2E8F0;
+      --text:#0F172A; --muted:#64748B; --dimmer:#CBD5E1;
+    }
+    /* Remove dark mode entirely */
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'Inter',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.5;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width:5px; height:5px; }
+    ::-webkit-scrollbar-track { background:transparent; }
+    ::-webkit-scrollbar-thumb { background:var(--dimmer); border-radius:10px; }
+
+    /* ── Cards ── */
+    .card {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:10px;
+    }
+
+    /* ── Buttons ── */
+    .btn-primary {
+      background:var(--teal); color:#fff; font-weight:700;
+      border:none; border-radius:7px; cursor:pointer;
+      padding:9px 20px; font-size:13px;
+      transition:all .15s; letter-spacing:.2px;
+      box-shadow:0 1px 3px rgba(0,203,168,.25);
+    }
+    .btn-primary:hover { background:#00b396; box-shadow:0 4px 12px rgba(0,203,168,.3); }
+    .btn-primary:disabled { opacity:.4; cursor:not-allowed; box-shadow:none; }
+    .btn-ghost {
+      background:transparent; color:var(--muted);
+      border:1px solid var(--border); border-radius:6px;
+      padding:6px 14px; font-size:12px; cursor:pointer; transition:all .15s;
+    }
+    .btn-ghost:hover, .btn-ghost.active {
+      background:var(--teal-b); color:var(--teal); border-color:var(--teal);
+    }
+
+    /* ── Tags ── */
+    .tag { display:inline-block; border-radius:5px; padding:2px 8px; font-size:11px; font-weight:500; }
+    .tag-teal   { background:rgba(0,203,168,.1);  color:#00956B; border:1px solid rgba(0,203,168,.25); }
+    .tag-amber  { background:rgba(245,158,11,.1); color:#B45309; border:1px solid rgba(245,158,11,.25); }
+    .tag-red    { background:rgba(239,68,68,.1);  color:#DC2626; border:1px solid rgba(239,68,68,.25); }
+    .tag-blue   { background:rgba(59,130,246,.1); color:#1D4ED8; border:1px solid rgba(59,130,246,.25); }
+
+    /* ── Forms ── */
+    input[type=text], input[type=email], input[type=password],
+    input[type=number], input[type=tel], select, textarea {
+      background:#fff; color:var(--text);
+      border:1.5px solid var(--border); border-radius:7px;
+      padding:8px 12px; font-size:13px;
+      font-family:'Inter',sans-serif; outline:none;
+      transition:border-color .15s, box-shadow .15s;
+      width:100%;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color:var(--teal);
+      box-shadow:0 0 0 3px rgba(0,203,168,.12);
+    }
+    input::placeholder { color:var(--dimmer); }
+
+    /* ── Tables ── */
+    table { width:100%; border-collapse:collapse; }
+    th {
+      text-align:left; padding:10px 12px; color:var(--muted);
+      font-weight:600; font-size:11px; letter-spacing:.5px;
+      text-transform:uppercase; border-bottom:2px solid var(--border);
+      background:#FAFAFA;
+    }
+    td {
+      padding:9px 12px; border-bottom:1px solid var(--border);
+      font-size:12px; vertical-align:middle; color:var(--text);
+    }
+    tr:hover td { background:#F8FAFC; }
+
+    /* ── Utilities ── */
+    .log { font-family:'JetBrains Mono',monospace; font-size:11px; }
+    .progress-bar { height:5px; background:var(--border); border-radius:3px; overflow:hidden; }
+    .progress-fill { height:5px; border-radius:3px; transition:width .4s ease; }
+
+    /* ── Animations ── */
+    @keyframes pulse  { 0%,100%{opacity:1} 50%{opacity:.4} }
+    @keyframes spin   { to{transform:rotate(360deg)} }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
+    @keyframes slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+    @keyframes bounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-6px)} }
+    .pulse   { animation:pulse 1.5s infinite; }
+    .spin    { animation:spin 1s linear infinite; }
+    .fade-in { animation:fadeIn .3s ease; }
+    .slide-up{ animation:slideUp .4s ease; }
+
+    /* ── Mobile responsive ── */
+    @media (max-width:768px) {
+      .hide-mobile { display:none !important; }
+      .card { border-radius:8px; }
+      table { font-size:11px; }
+      th,td { padding:7px 8px; }
+    }
+    @media (max-width:480px) {
+      .btn-primary { padding:10px 16px; font-size:12px; }
+    }
+    /* ── Mobile touch targets ── */
+    @media (max-width: 640px) {
+      .btn-primary,
+      .card button,
+      table button {
+        min-height: 40px;
+        font-size: 13px !important;
+        padding: 10px 16px !important;
+      }
+      input[type=range] {
+        height: 28px;
+      }
+      .card {
+        padding: 14px !important;
+      }
+      /* Stack format picker buttons more comfortably */
+      .card div[style*="flex-wrap"] button {
+        flex: 1 1 auto;
+        min-width: 90px;
+        text-align: center;
+      }
+    }
+  </style>
+  <script type="module" crossorigin src="/assets/index-Bn4vdBoW.js"></script>
+</head>
+<body>
+  <noscript>DataSmithy requires JavaScript to run.</noscript>
+  <div id="root"></div>
+</body>
+</html>
