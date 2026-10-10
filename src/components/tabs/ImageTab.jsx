@@ -1,6 +1,6 @@
 // src/components/tabs/ImageTab.jsx
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import ShareButton from '../ShareButton.jsx';
+import ShareButton from '../Sharebutton.jsx';
 
 /* ─── Design tokens ───────────────────────────────────────── */
 const C = { teal:'#00CBA8', tealDim:'rgba(0,203,168,.1)', tealBorder:'rgba(0,203,168,.35)',
