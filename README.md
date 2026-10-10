@@ -191,7 +191,12 @@ datasmithy/
 ## Privacy
 
 All dataset processing happens 100% in your browser. No data is sent to any server.
-Only metadata (filename, row counts, health score) is saved to Firestore when you're logged in.
+
+----
+
+##Author
+
+KOLLI VENNELA CHOWDARY
 
 ---
 
