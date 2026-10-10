@@ -114,15 +114,26 @@ export default function AdminPage() {
       </div>
 
       {/* Tab bar */}
-      <div style={{ display:'flex', gap:'4px', marginBottom:'20px' }}>
-        {[['overview','📊 Overview'], ['users','👥 Users'], ['activity','📋 Activity']].map(([id,label]) => (
-          <button key={id} onClick={() => setActiveTab(id)} style={{
-            padding:'7px 18px', borderRadius:'7px', outline:'none', cursor:'pointer',
-            fontSize:'12px', fontWeight:activeTab===id?700:400,
-            background:activeTab===id?'rgba(0,203,168,.1)':'transparent',
-            color:activeTab===id?'#00CBA8':'#64748B',
-            outline:activeTab===id?'1.5px solid rgba(0,203,168,.3)':'1px solid transparent',
-          }}>{label}</button>
+      <div style={{ display: 'flex', gap: '4px', marginBottom: '20px' }}>
+        {[['overview', '📊 Overview'], ['users', '👥 Users'], ['activity', '📋 Activity']].map(([id, label]) => (
+          <button
+            key={id}
+            onClick={() => setActiveTab(id)}
+            style={{
+              padding: '7px 18px',
+              borderRadius: '7px',
+              cursor: 'pointer',
+              fontSize: '12px',
+              fontWeight: activeTab === id ? 700 : 400,
+              background: activeTab === id ? 'rgba(0,203,168,.1)' : 'transparent',
+              color: activeTab === id ? '#00CBA8' : '#64748B',
+              outline: activeTab === id
+                ? '1.5px solid rgba(0,203,168,.3)'
+                : '1px solid transparent',
+            }}
+          >
+            {label}
+          </button>
         ))}
       </div>
 
