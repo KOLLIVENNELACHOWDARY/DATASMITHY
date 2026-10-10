@@ -274,7 +274,7 @@ export default function Landing() {
           <span style={{ fontSize:'9px', padding:'2px 7px', background:'rgba(0,203,168,.1)', color:'var(--teal)', borderRadius:'4px', fontWeight:700 }}>FREE</span>
         </div>
         <div style={{ color:'var(--muted)', fontSize:'11px' }}>
-          Built by Vennela Chowdary K · GRIET Hyderabad · Data never leaves your browser
+          DataSmithy © 2026 · Built with 💚 by Kolli.Vennela Chowdary.
         </div>
       </footer>
     </div>
