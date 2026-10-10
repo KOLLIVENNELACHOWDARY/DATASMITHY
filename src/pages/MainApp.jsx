@@ -28,7 +28,7 @@ import ConnectorsTab     from '../components/tabs/ConnectorsTab.jsx';
 import PipelineTemplates from '../components/tabs/PipelineTemplates.jsx';
 import { ModeToggle }    from '../components/tabs/UniversalExtras.jsx';
 import ImageTab          from '../components/tabs/ImageTab.jsx';
-import ShareButton       from '../components/ShareButton.jsx';
+import ShareButton       from '../components/Sharebutton.jsx';
 import TextNLPTab        from '../components/tabs/TextNLPTab.jsx';
 
 const IMAGE_EXTS   = new Set(['jpg','jpeg','png','gif','webp','bmp','svg','tiff','tif','heic']);
