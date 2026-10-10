@@ -1,21 +1,5 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "framework": "vite",
-  "functions": {
-    "api/*.py": {
-      "runtime": "python3.9",
-      "maxDuration": 30
-    },
-    "api/chat.py": {
-      "runtime": "python3.9",
-      "maxDuration": 30
-    }
-  },
-  "routes": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+  "framework": "vite"
 }
