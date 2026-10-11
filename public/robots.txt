@@ -1,0 +1,8 @@
+# robots.txt for datasmithy.vercel.app
+User-agent: *
+Allow: /
+
+# Point Google to your sitemap
+Sitemap: https://datasmithy.vercel.app/sitemap.xml
+
+# Disallow nothing — let all bots crawl everything
